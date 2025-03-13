@@ -26,6 +26,8 @@ class Str {
   string getValue() { return value_; }
   void setValue(string value) { value_ = value; }
 
+  static short length(string str) { return str.length(); }
+
   static bool isVowel(char c) {
     char vowels[] = {'a', 'e', 'i', 'o', 'u'};
     for (char vowel : vowels)
@@ -73,10 +75,10 @@ class Str {
     return count;
   }
 
-  static short countWords(string str) { return split(str).size(); }
+  static short countWords(string str) { return split(str, " ").size(); }
 
   static void printWords(string str) {
-    for (string &word : split(str)) std::cout << word << std::endl;
+    for (string &word : split(str, " ")) std::cout << word << std::endl;
   }
 
   static void printFirstLetterOfEachWord(string str) {
@@ -163,7 +165,7 @@ class Str {
   }
 
   static string reverse(string str) {
-    vector<string> words = split(str);
+    vector<string> words = split(str, " ");
     vector<string>::iterator iter = words.end();
     str.clear();
 
@@ -172,7 +174,7 @@ class Str {
     return str.substr(0, str.length() - 1);  // remove last space.
   }
 
-  static vector<string> split(string str, string delim = " ") {
+  static vector<string> split(string str, string delim) {
     string word;  // define a string variable & delimiter
     vector<string> splitted;
     short pos;
@@ -191,7 +193,7 @@ class Str {
 
   static string replace(string str, string oldWord, string newWord,
                         bool matchCase = true) {
-    vector<string> words = split(str);
+    vector<string> words = split(str, " ");
     vector<string>::iterator iter;
     str.clear();
 
@@ -206,6 +208,7 @@ class Str {
     return str.substr(0, str.length() - 1);  // remove last space.
   }
 
+  short length() { return value_.length(); }
   short countVowels() { return countVowels(value_); }
   void printVowels() { printVowels(value_); }
   short countChar(char c, bool matchCase = true) {
@@ -233,7 +236,7 @@ class Str {
   string replace(string oldWord, string newWord, bool matchCase = true) {
     return (value_ = replace(value_, oldWord, newWord, matchCase));
   }
-  vector<string> split() { return split(value_); }
+  vector<string> split(string delim = " ") { return split(value_, delim); }
 
   __declspec(property(get = getValue, put = setValue)) string value;
 
