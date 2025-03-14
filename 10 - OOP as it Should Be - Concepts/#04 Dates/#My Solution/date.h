@@ -5,9 +5,9 @@
   https://programmingadvices.com/courses/1936515/lectures/44343013/comments/25945231
 */
 
-#pragma once
-
 #pragma warning(disable : 4996)
+
+#pragma once
 
 #include <corecrt.h>
 
