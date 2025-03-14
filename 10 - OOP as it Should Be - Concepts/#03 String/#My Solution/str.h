@@ -208,37 +208,58 @@ class Str {
     return str.substr(0, str.length() - 1);  // remove last space.
   }
 
+  // Object-specific methods:
+
   short length() { return value_.length(); }
+
   short countVowels() { return countVowels(value_); }
+
   void printVowels() { printVowels(value_); }
+
   short countChar(char c, bool matchCase = true) {
     return countChar(value_, c, matchCase);
   }
+
   short countUpper() { return countUpper(value_); }
+
   short countLower() { return countLower(value_); }
+
   short countWords() { return countWords(value_); }
+
   void printWords() { printWords(value_); }
+
   void printFirstLetterOfEachWord() { printFirstLetterOfEachWord(value_); }
+
   string removePunct() { return (value_ = removePunct(value_)); }
+
   string lower() { return (value_ = lower(value_)); }
+
   string upper() { return (value_ = upper(value_)); }
+
   string lowerFirstLetterOfEachWord() {
     return (value_ = lowerFirstLetterOfEachWord(value_));
   }
+
   string upperFirstLetterOfEachWord() {
     return (value_ = upperFirstLetterOfEachWord(value_));
   }
+
   string invertCase() { return (value_ = invertCase(value_)); }
+
   string trim(TrimType type = TrimType::All) {
     return (value_ = trim(value_, type));
   }
+
   string reverse() { return (value_ = reverse(value_)); }
+
   string replace(string oldWord, string newWord, bool matchCase = true) {
     return (value_ = replace(value_, oldWord, newWord, matchCase));
   }
+
   vector<string> split(string delim = " ") { return split(value_, delim); }
 
-  __declspec(property(get = getValue, put = setValue)) string value;
+  // MSVC compiler only
+  __declspec(property(get = getValue, put = setValue)) string value; 
 
  private:
   string value_;
